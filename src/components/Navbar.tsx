@@ -6,10 +6,12 @@ import Wrap from "./Wrap";
 import Logo from "./Logo";
 import { IoCartSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import useCartStore from "../store/useCartStore";
 const Navbar: React.FC = () => {
+  const { carts } = useCartStore();
   const [open, setOpen] = useState<boolean>(false);
   return (
-    <header className="border-b border-primary/30 fixed top-0 z-10 w-full bg-secondary">
+    <header className="border-b py-5 border-primary/30 fixed top-0 z-10 w-full bg-secondary">
       <Wrap>
         <nav className="flex items-center justify-between">
           <Logo />
@@ -31,9 +33,14 @@ const Navbar: React.FC = () => {
             })}
           </ul>
           <div className="flex items-center gap-3">
-            <Link to="/cart" className="text-xl font-bold text-blue-400">
-              <IoCartSharp size={25} />
-            </Link>
+            <div className="relative">
+              <Link to="/cart" className="text-xl font-bold text-white">
+                <IoCartSharp size={35} />
+              </Link>
+              <span className="bg-primary h-6 w-6 flex items-center justify-center text-center rounded-full absolute -top-2 -right-3">
+                {carts.length}
+              </span>
+            </div>
             <button
               className="flex md:hidden text-sky-400"
               onClick={() => setOpen(!open)}

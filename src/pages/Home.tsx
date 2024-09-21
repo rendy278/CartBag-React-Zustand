@@ -3,7 +3,7 @@ import ProductSection from "../components/ProductSection";
 
 const Home: React.FC = () => {
   return (
-    <div className="py-20">
+    <div className="py-20 h-full w-full">
       <ProductSection />
     </div>
   );

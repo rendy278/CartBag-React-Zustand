@@ -4,7 +4,7 @@ import { navLinks } from "../constants/navLinks";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary/10 text-white pt-10 mt-auto">
+    <footer className="bg-primary/10 flex flex-col items-center  h-full pt-10 text-white  mt-auto">
       <Wrap>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {/* Column 1: Info */}
@@ -45,7 +45,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Footer */}
-        <div className="mt-8 text-center border-t border-gray-700 pt-4">
+        <div className="py-5 mt-6 text-center border-t h-fit flex justify-center items-center border-gray-700 pt-4">
           <p className="text-gray-400">
             &copy; {new Date().getFullYear()} IT Creation. All rights reserved.
           </p>

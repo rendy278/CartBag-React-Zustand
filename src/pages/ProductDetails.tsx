@@ -4,14 +4,15 @@ import { useParams } from "react-router-dom";
 import useProductStore from "../store/useProductStore";
 import { useEffect } from "react";
 import Loading from "../components/loading";
+import useCartStore from "../store/useCartStore";
 
 const ProductDetails: React.FC = () => {
   const { productId } = useParams();
+  const { addToCart } = useCartStore();
   const { product, loading, error, fetchProductId } = useProductStore();
 
   useEffect(() => {
     fetchProductId(productId);
-    console.log(productId);
   }, [productId, fetchProductId]);
 
   if (loading) {
@@ -33,7 +34,7 @@ const ProductDetails: React.FC = () => {
   return (
     <Wrap>
       {product && (
-        <section className="h-full py-20 md:py-0 md:h-screen place-items-start md:place-items-center grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+        <section className="h-full w-full py-20 md:py-0 md:h-screen place-items-start md:place-items-center grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
           <div className="flex justify-center items-center">
             <img src={product.thumbnail} alt={product.title} className="h-96" />
           </div>
@@ -42,7 +43,10 @@ const ProductDetails: React.FC = () => {
             <h1>${product.price}</h1>
             <p className="w-full md:w-96">{product.description}</p>
             <ReviewStar rating={product.rating} />
-            <button className="rounded-full bg-primary hover:bg-primary/90 px-5 py-3 text-center text-white">
+            <button
+              onClick={() => addToCart(product)}
+              className="rounded-full bg-primary hover:bg-primary/90 px-5 py-3 text-center text-white"
+            >
               Add To Cart
             </button>
           </div>
