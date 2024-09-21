@@ -5,11 +5,11 @@ import Wrap from "./Wrap";
 import Loading from "./loading";
 
 const ProductSection = () => {
-  const { products, loading, error, fetchProduct } = useProductStore();
+  const { products, loading, error, fetchProducts } = useProductStore();
 
   useEffect(() => {
-    fetchProduct();
-  }, [fetchProduct]);
+    fetchProducts();
+  }, [fetchProducts]);
 
   if (loading) {
     return <Loading />;

@@ -6,20 +6,33 @@ interface Product {
   title: string;
   price: number;
   thumbnail: string;
+  rating: number;
+}
+
+interface ProductId {
+  id: number;
+  title: string;
+  price: number;
+  thumbnail: string;
+  description: string;
+  rating: number;
 }
 
 interface ProductStore {
   products: Product[];
+  product: ProductId | null;
   loading: boolean;
   error: string | null;
-  fetchProduct: () => Promise<void>;
+  fetchProducts: () => Promise<void>;
+  fetchProductId: (id: string | undefined) => Promise<void>;
 }
 
 const useProductStore = create<ProductStore>((set) => ({
   products: [],
+  product: null,
   loading: false,
   error: null,
-  fetchProduct: async () => {
+  fetchProducts: async () => {
     set({ loading: true, error: null });
     try {
       const response = await axios.get("https://dummyjson.com/products");
@@ -27,6 +40,17 @@ const useProductStore = create<ProductStore>((set) => ({
     } catch (error) {
       console.error(error);
       set({ error: "Failed to fetch products", loading: false });
+    }
+  },
+  fetchProductId: async (id) => {
+    set({ loading: true, error: null });
+    try {
+      const response = await axios.get(`https://dummyjson.com/product/${id}`);
+      console.log(response.data);
+      set({ product: response.data, loading: false });
+    } catch (error) {
+      console.error(error);
+      set({ error: "Failed to fetch product id", loading: false });
     }
   },
 }));

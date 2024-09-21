@@ -5,6 +5,7 @@ import { navLinks } from "../constants/navLinks";
 import Wrap from "./Wrap";
 import Logo from "./Logo";
 import { IoCartSharp } from "react-icons/io5";
+import { Link } from "react-router-dom";
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
   return (
@@ -30,9 +31,9 @@ const Navbar: React.FC = () => {
             })}
           </ul>
           <div className="flex items-center gap-3">
-            <a href="/cart" className="text-xl font-bold text-blue-400">
+            <Link to="/cart" className="text-xl font-bold text-blue-400">
               <IoCartSharp size={25} />
-            </a>
+            </Link>
             <button
               className="flex md:hidden text-sky-400"
               onClick={() => setOpen(!open)}
