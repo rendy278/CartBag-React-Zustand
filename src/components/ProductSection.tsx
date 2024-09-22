@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import useProductStore from "../store/useProductStore";
 import ProductCard from "./ProductCard";
 import Wrap from "./Wrap";
-import Loading from "./loading";
+import Loading from "./Loading";
 
 const ProductSection = () => {
   const { products, loading, error, fetchProducts } = useProductStore();
