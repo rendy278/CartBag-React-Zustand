@@ -3,7 +3,7 @@ import ReviewStar from "../components/ReviewStar";
 import { useParams } from "react-router-dom";
 import useProductStore from "../store/useProductStore";
 import { useEffect } from "react";
-import Loading from "../components/loading";
+import Loading from "../components/Loading";
 import useCartStore from "../store/useCartStore";
 
 const ProductDetails: React.FC = () => {
